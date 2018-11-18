@@ -70,5 +70,4 @@ public class PageController {
 		mv.addObject("userClickCategoryProducts", true);
 		return mv;
 	}
-
 }
