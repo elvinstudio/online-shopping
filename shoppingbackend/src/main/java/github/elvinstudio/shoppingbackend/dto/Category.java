@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name="category")
+@Entity
 public class Category {
 
 	@Override
@@ -14,10 +14,6 @@ public class Category {
 		return "Category [id=" + id + ", name=" + name + ", description=" + description + ", imageURL=" + imageURL
 				+ ", active=" + active + "]";
 	}  /// for error handling 
-
-
-
-	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
