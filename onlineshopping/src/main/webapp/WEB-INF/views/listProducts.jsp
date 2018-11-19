@@ -25,9 +25,10 @@
 					</c:if>
 				</div>
 			</div>
+			
+			<%@include file="./itemList.jsp"%>
 
 		</div>
-
 
 	</div>
 </div>
