@@ -34,8 +34,15 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public Product get(int id) {
-
-		return sessionFactory.getCurrentSession().get(Product.class, Integer.valueOf(id));
+		try {
+			return sessionFactory
+					.getCurrentSession()
+						.get(Product.class, Integer.valueOf(id));
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
@@ -70,5 +77,16 @@ public class ProductDAOImpl implements ProductDAO {
 			ex.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public List<Product> getLatestActiveProdct(int count) {
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery("FROM PRODUCT WHERE active=:active order by id",Product.class)
+						.setParameter("active", true)
+							.setFirstResult(0)
+							.setMaxResults(count)
+							.getResultList();
 	}
 }

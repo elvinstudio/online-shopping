@@ -1,10 +1,14 @@
 package github.elvinstudio.shoppingbackend.dto;
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Product {
@@ -29,14 +33,30 @@ public class Product {
 	@Column(name = "image_url")
 	private String productImage;
 	
+	@Column(name = "code")
+	private String productCode;
+	
+	@Column(name = "brand")
+	private String productBrand;
+	@JsonIgnore
+	@Column(name = "supplierid")
+	private String productSupplier;
+	
+	@Column(name = "view")
+	private int productView;
+	
 	private Double price;
 	private int categoryid;
 	
 	private int inventory;
 	private int sold=0;
-	
+	@JsonIgnore
 	@Column(name = "is_active")
 	private boolean productActive = true;
+	
+	public Product() {
+		this.productCode = "PRD" +UUID.randomUUID().toString().substring(26).toUpperCase();
+	}
 	
 	public int getCategoryid() {
 		return categoryid;
@@ -108,6 +128,38 @@ public class Product {
 
 	public void setProductActive(boolean productActive) {
 		this.productActive = productActive;
+	}
+
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
+	}
+
+	public String getProductBrand() {
+		return productBrand;
+	}
+
+	public void setProductBrand(String productBrand) {
+		this.productBrand = productBrand;
+	}
+
+	public String getProductSupplier() {
+		return productSupplier;
+	}
+
+	public void setProductSupplier(String productSupplier) {
+		this.productSupplier = productSupplier;
+	}
+
+	public int getProductView() {
+		return productView;
+	}
+
+	public void setProductView(int productView) {
+		this.productView = productView;
+	}
+	
+	public int getRemains() {
+		return (inventory-sold);
 	}
 
 }

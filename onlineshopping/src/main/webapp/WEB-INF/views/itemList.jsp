@@ -11,10 +11,11 @@
 					<h5>${product.price}</h5>
 					<p class="card-text">${product.productDescription}</p>
 				</div>
-				<c:if test="${((product.inventory-product.sold)*100/product.inventory)<11}">
+				<c:if
+					test="${((product.inventory-product.sold)*100/product.inventory)<11}">
 					<div class="card-footer">
 						<small class="text-muted">
-						&#20165;&#21097;${(product.inventory-product.sold)}&#20214;&#65281;</small>
+							&#20165;&#21097;${(product.inventory-product.sold)}&#20214;&#65281;</small>
 					</div>
 				</c:if>
 			</div>

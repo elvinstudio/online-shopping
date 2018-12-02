@@ -4,8 +4,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <spring:url var="css" value="/resources/css" />
-<spring:url var="js" value="/resources/js" />
-<spring:url var="images" value="/resources/images" />
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -20,11 +18,6 @@
 <meta name="author" content="">
 
 <title>Online Shopping - ${title}</title>
-
-<script>
-	window.menu = '${title}';
-	window.contextRoot ='${contextRoot}';
-</script>
 
 <!-- Bootstrap core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
@@ -45,41 +38,24 @@
 		<!-- Navigation -->
 		<%@include file="./shared/navbar.jsp"%>
 
-		<!-- Page Content -->
-
 		<div class="content">
-			<c:if test="${userClickHome==true}">
-				<%@include file="home.jsp"%>
-			</c:if>
-
-			<c:if test="${userClickAbout==true}">
-				<%@include file="about.jsp"%>
-			</c:if>
-
-			<c:if test="${userClickContact==true}">
-				<%@include file="contact.jsp"%>
-			</c:if>
-			
-			<c:if test="${userClickAllProducts==true or userClickCategoryProducts==true}">
-				<%@include file="listProducts.jsp"%>
-			</c:if>
-			
-			<c:if test="${userClickShowProduct==true}">
-				<%@include file="singleProduct.jsp"%>
-			</c:if>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="jumbotron">
+							<h1>${errorTitle}</h1>
+							<hr />
+							<blockquote style="word-wrap:break-word">${errorDescription}</blockquote>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		
+
+
 		<!-- Footer -->
 		<%@include file="./shared/footer.jsp"%>
 
-		<!-- Bootstrap core JavaScript -->
-		<script src="${js}/jquery.min.js"></script>
-		<script src="${js}/bootstrap.bundle.min.js"></script>
-
-		<script src="${js}/myapp.js"></script>
-		<script src="${js}/jquery.dataTables.js"></script>
-		<script src="${js}/dataTables.bootstrap.js"></script>
-		
 	</div>
 </body>
 
