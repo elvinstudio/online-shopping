@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -15,8 +18,11 @@ public class Product {
 	
 	@Override
 	public String toString() {
-		return "Product [id=" + productId + ", name=" + productName + ", description=" + productDescription + ", imageURL=" + productImage
-				+ ", price=" + price+ ", active=" + productActive + "]";
+		return "Product [productId=" + productId + ", productName=" + productName + ", productDescription="
+				+ productDescription + ", productImage=" + productImage + ", productCode=" + productCode
+				+ ", productBrand=" + productBrand + ", productSupplier=" + productSupplier + ", productView="
+				+ productView + ", price=" + price + ", categoryid=" + categoryid + ", inventory=" + inventory
+				+ ", sold=" + sold + ", productActive=" + productActive + "]";
 	}
 	
 	@Id
@@ -24,9 +30,11 @@ public class Product {
 	@Column(name = "id")
 	private int productId;
 	
+	@NotBlank(message="Please enter the Product Name!")
 	@Column(name = "name")
 	private String productName;
 	
+	@NotBlank(message="Please enter the description for product!")
 	@Column(name = "description")
 	private String productDescription;
 	
@@ -36,27 +44,27 @@ public class Product {
 	@Column(name = "code")
 	private String productCode;
 	
+	@NotBlank(message="Please enter the Brand Name!")
 	@Column(name = "brand")
 	private String productBrand;
-	@JsonIgnore
+	
 	@Column(name = "supplierid")
-	private String productSupplier;
+	private Integer productSupplier=1;
 	
 	@Column(name = "view")
 	private int productView;
 	
+	@Min(value=1, message="The min price is 1")
 	private Double price;
 	private int categoryid;
 	
+	@Min(value=0, message="Please enter the Inventory!")
 	private int inventory;
 	private int sold=0;
+	
 	@JsonIgnore
 	@Column(name = "is_active")
 	private boolean productActive = true;
-	
-	public Product() {
-		this.productCode = "PRD" +UUID.randomUUID().toString().substring(26).toUpperCase();
-	}
 	
 	public int getCategoryid() {
 		return categoryid;
@@ -129,9 +137,14 @@ public class Product {
 	public void setProductActive(boolean productActive) {
 		this.productActive = productActive;
 	}
+	
+
+	public String getProductCode() {
+		return productCode;
+	}
 
 	public void setProductCode(String productCode) {
-		this.productCode = productCode;
+		this.productCode = "PRD" +UUID.randomUUID().toString().substring(26).toUpperCase();
 	}
 
 	public String getProductBrand() {
@@ -140,14 +153,6 @@ public class Product {
 
 	public void setProductBrand(String productBrand) {
 		this.productBrand = productBrand;
-	}
-
-	public String getProductSupplier() {
-		return productSupplier;
-	}
-
-	public void setProductSupplier(String productSupplier) {
-		this.productSupplier = productSupplier;
 	}
 
 	public int getProductView() {
@@ -160,6 +165,14 @@ public class Product {
 	
 	public int getRemains() {
 		return (inventory-sold);
+	}
+
+	public int getProductSupplier() {
+		return productSupplier;
+	}
+
+	public void setProductSupplier(Integer productSupplier) {
+		this.productSupplier = productSupplier;
 	}
 
 }

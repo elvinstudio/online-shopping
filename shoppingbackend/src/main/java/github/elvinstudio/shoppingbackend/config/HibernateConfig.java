@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class HibernateConfig {
 
 	// Change the below based on the DBMS you choose
-	private final static String DATABASE_URL="jdbc:mysql://127.0.0.1:3306/onlineshopping?useSSL=false";
+	private final static String DATABASE_URL="jdbc:mysql://127.0.0.1:3306/onlineshopping?useSSL=false&useUnicode=true&characterEncoding=utf8";
 	private final static String DATABASE_DRIVER="com.mysql.cj.jdbc.Driver";
 	private final static String DATABASE_DIALECT="org.hibernate.dialect.MySQL8Dialect";
 	private final static String DATABASE_USERNAME="oshopping";
@@ -37,7 +37,6 @@ public class HibernateConfig {
 		dataSource.setUsername(DATABASE_USERNAME);
 		dataSource.setPassword(DATABASE_PASSWORD);
 				
-		
 		return dataSource;
 		
 	}
