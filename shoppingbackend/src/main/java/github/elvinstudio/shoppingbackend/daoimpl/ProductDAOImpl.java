@@ -31,6 +31,15 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 		return query.getResultList();
 	}
+	
+	@Override
+	public List<Product> listAllProduct() {
+		String selectActiveProduct = "FROM Product";
+		Query query = sessionFactory.getCurrentSession().createQuery(selectActiveProduct);
+		
+		return query.getResultList();
+	}
+
 
 	@Override
 	public Product get(int id) {

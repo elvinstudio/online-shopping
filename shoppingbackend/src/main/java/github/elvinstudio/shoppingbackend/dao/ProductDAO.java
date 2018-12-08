@@ -12,4 +12,5 @@ public interface ProductDAO {
 	boolean delete(Product product);
 	
 	List<Product> getLatestActiveProdct(int count);
+	List<Product> listAllProduct();
 }
