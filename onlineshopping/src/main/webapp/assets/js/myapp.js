@@ -257,8 +257,26 @@ $(function() {
 	}
 });
 
-$().ready(function() {
-	$("#categoryForm").validate({
+function errorPlacement(error, element) {
+	// Add the 'help-block' class to the error element
+	error.addClass("help-block");
+
+	// add the error label after the input element
+	error.insertAfter(element);
+
+	// add the has-feedback class to the
+	// parent div.validate in order to add icons to inputs
+	element.parents(".validate").addClass("has-feedback");
+
+}
+
+// validating the product form element
+// fetch the form element
+$categoryForm = $('#categoryForm');
+
+if ($categoryForm.length) {
+
+	$categoryForm.validate({
 		rules : {
 			name : {
 				required : true,
@@ -271,13 +289,62 @@ $().ready(function() {
 		},
 		messages : {
 			name : {
-				required : 'Please enter category name!',
-				minlength : 'Please enter atleast 3 characters'
+				required : 'Please enter product name!',
+				minlength : 'Please enter atleast five characters'
 			},
 			description : {
-				required : 'Please enter category description!',
-				minlength : 'Please enter atleast 3 characters'
+				required : 'Please enter product name!',
+				minlength : 'Please enter atleast five characters'
 			}
+		},
+		errorElement : "em",
+		errorPlacement : function(error, element) {
+			errorPlacement(error, element);
 		}
-	})
-});
+	}
+
+	);
+
+}
+
+/* validating the loginform */
+
+// validating the product form element
+// fetch the form element
+$loginForm = $('#loginForm');
+
+if ($loginForm.length) {
+
+	$loginForm.validate({
+		rules : {
+			username : {
+				required : true,
+				email : true
+
+			},
+			password : {
+				required : true
+			}
+		},
+		messages : {
+			username : {
+				required : 'Please enter your email!',
+				email : 'Please enter a valid email address!'
+			},
+			password : {
+				required : 'Please enter your password!'
+			}
+		},
+		errorElement : "em",
+		errorPlacement : function(error, element) {
+			// Add the 'help-block' class to the error element
+			error.addClass("help-block");
+
+			// add the error label after the input element
+			error.insertAfter(element);
+		}
+	}
+
+	);
+
+}

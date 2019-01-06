@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import github.elvinstudio.onlineshopping.exception.ProductNotFoundException;
@@ -38,13 +39,22 @@ public class PageController {
 		mv.addObject("userClickHome", true);
 		return mv;
 	}
-
+	
 	@RequestMapping(value = "/about")
 	public ModelAndView about() {
 
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "About Us");
 		mv.addObject("userClickAbout", true);
+		return mv;
+	}
+
+	@RequestMapping(value = "/mylogin")
+	public ModelAndView mylogin() {
+
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Login");
+		mv.addObject("login_page", true);
 		return mv;
 	}
 
@@ -99,6 +109,15 @@ public class PageController {
 		mv.addObject("product", product);
 		
 		mv.addObject("userClickShowProduct",true);
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/register")
+	public ModelAndView register() {
+
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "About Us");
 		return mv;
 	}
 }

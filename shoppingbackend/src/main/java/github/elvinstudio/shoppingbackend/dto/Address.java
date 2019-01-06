@@ -1,5 +1,7 @@
 package github.elvinstudio.shoppingbackend.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,9 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
-public class Address {
+public class Address implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -25,13 +34,18 @@ public class Address {
 
 
 	@Column(name ="address_line1")
+	@NotBlank(message="Please enter address line one!")
 	private String addressLineOne;
 	@Column(name="address_line2")
 	private String addressLineTwo;
+	@NotBlank(message="Please enter city!")
 	private String city;
+	@NotBlank(message="Please enter state!")
 	private String state;
+	@NotBlank(message="Please enter country!")
 	private String country;
 	@Column(name="postal_code")
+	@NotBlank(message="Please enter postal code!")
 	private String postalCode;
 	private boolean shipping;
 	private boolean billing;

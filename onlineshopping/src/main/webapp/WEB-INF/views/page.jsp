@@ -16,6 +16,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
 
 <title>Online Shopping - ${title}</title>
 
@@ -69,6 +72,11 @@
 			<c:if test="${userClickManageProducts==true}">
 				<%@include file="manageProducts.jsp"%>
 			</c:if>
+			
+			<c:if test="${login_page==true}">
+				<%@include file="loginpage.jsp"%>
+			</c:if>
+		
 		</div>
 		
 		<!-- Footer -->
